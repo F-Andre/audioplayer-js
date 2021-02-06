@@ -1,0 +1,461 @@
+@font-face {
+    font-family: "karnivore";
+    src: url("font/karnivore_tecca/KARNIVOT-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif';
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav h2 {
+    font-family: "karnivore";
+    font-size: 45px;
+    font-weight: 200;
+    color: rgb(255, 102, 0);
+    flex-grow: 10;
+    margin: 10px 0 5px 2%;
+}
+
+nav span {
+    color: rgb(255, 102, 0);
+    text-shadow: 1px 1px 2px rgb(151, 151, 151);
+    
+    font-size: 43px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: 400;
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgb(255, 102, 0);
+    border-radius: 50%;
+    margin-right: 2%;
+    box-shadow: inset 1px 1px 2px rgb(151, 151, 151), 1px 1px 2px rgb(151, 151, 151);
+}
+
+nav span:hover {
+    background-color: rgb(255, 102, 0);
+    color: white;
+}
+
+p {
+    padding-top: 10px;
+    font-size: 1.3rem;
+}
+
+#waveform, #canvasRta, table, #playerDiv>p:first-of-type, #progressBar {
+    margin-bottom: 20px;
+    width: 96%;
+    margin-left: 2%;
+}
+
+#vuMeter {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#progressBar {
+    box-shadow: inset 0 1px 3px gray;
+}
+
+#playerInfo {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    text-align: center;
+    padding: 5px;
+    padding-top: 10px;
+    border: 2px solid rgb(255, 102, 0);
+    border-radius: 5px;
+    width: 30%;
+}
+
+#playerDiv>p:first-of-type {
+    border-top: 2px solid rgb(255, 102, 0);
+}
+
+#loadArea {
+    background-color:#ededed;
+    width: calc(96% - 40px);
+    margin-left: 2%;
+    margin-top: 20px;
+    padding: 20px;
+    font-size: 1.3rem;
+    height: 25px;
+}
+
+#play {
+    background-image: url(boutons_multimedia.png);
+    background-position: 0 -128px;
+}
+
+#play[enabled] {
+    background-image: url(boutons_multimedia.png);
+    background-position: 0 0;
+}
+
+#play:hover {
+    background-image: url(boutons_multimedia.png);
+    background-position: 0 -64px;
+    cursor: pointer;
+}
+
+#pause {
+    background-image: url(boutons_multimedia.png);
+    background-position: -64px -128px;
+}
+
+#pause[enabled] {
+    background-image: url(boutons_multimedia.png);
+    background-position: -64px 0;
+}
+
+#pause:hover {
+    background-image: url(boutons_multimedia.png);
+    background-position: -64px -64px;
+    cursor: pointer;
+}
+
+#stop {
+    background-image: url(boutons_multimedia.png);
+    background-position: -128px -128px;
+}
+
+#stop:hover {
+    background-image: url(boutons_multimedia.png);
+    background-position: -128px -64px;
+    cursor: pointer;
+}
+
+#prev {
+    background-image: url(boutons_multimedia.png);
+    background-position: -192px -128px;
+}
+
+#prev:hover {
+    background-image: url(boutons_multimedia.png);
+    background-position: -192px -64px;
+    cursor: pointer;
+}
+
+#next {
+    background-image: url(boutons_multimedia.png);
+    background-position: -256px -128px;
+}
+
+#next:hover {
+    background-image: url(boutons_multimedia.png);
+    background-position: -256px -64px;
+    cursor: pointer;
+}
+
+#control {
+    text-align: center;
+}
+
+.controlBtn {
+    height: 66px;
+    width: 66px;
+    border-radius: 10px;
+    text-align: center;
+    background-size: 320px 192px;
+    margin: 5px;
+}
+
+#displayControls {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.3rem;
+    line-height: 48px;
+    margin-left: 2%;
+    justify-content: space-around;
+    width: 90%;
+}
+
+#progressBar {
+    height: 10px;
+    background: linear-gradient(to right, rgb(255, 102, 0), rgb(255, 209, 179));
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+table {
+    background-color: rgb(255, 102, 0);
+}
+
+.trP {
+    background-color: rgb(255, 133, 51);
+}
+
+.trI {
+    background-color: rgb(255, 163, 102);
+}
+
+table,
+th,
+td {
+    border-collapse: collapse;
+    border: 1px solid gray;
+}
+
+th,
+td {
+    padding: 5px;
+}
+
+th:first-child {
+    width: 3%;
+}
+
+th:nth-child(2) {
+    width: 60%;
+}
+
+th:nth-child(3),
+th:nth-child(4) {
+    width: 20%;
+}
+
+tr {
+    font-size: 1em;
+    vertical-align: middle;
+}
+
+tr[playing] {
+    font-weight: bold;
+}
+
+tr[playing] td:first-child {
+    text-align: center;
+}
+
+tr[playing] td:first-child::after {
+    content: '\25B6';
+}
+
+td[loading = "true"] div::after {
+    content: '\25DC';
+    padding: 0;
+    margin: 0;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+@keyframes mymove {
+    100% {
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+        -ms-transform-origin: center;
+        -webkit-transform-origin: center;
+        transform-origin: center;
+        }
+}
+
+td[loading = "true"] div {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-size: 18px;
+    animation: mymove 2s infinite linear;
+}
+
+[select] {
+    border: 3px solid rgb(100, 100, 100);
+    font-size: 1.1em;
+}
+
+#mono,
+#stereo,
+#rtaOn,
+#rtaOff,
+#shufOn,
+#shufOff,
+#fileLabel,
+#fileDown,
+#down-list {
+    background-color: white;
+    margin: 10px;
+    padding: 5px;
+    border: 2px solid rgb(255, 102, 0);
+    border-radius: 5px;
+    width: 70px;
+    box-shadow: inset 1px 1px 2px 1px rgb(151, 151, 151), 1px 1px 2px rgb(151, 151, 151);
+}
+
+#mono[active],
+#stereo[active],
+#rtaOn[active],
+#rtaOff[active],
+#shufOn[active],
+#shufOff[active],
+#fileLabel:hover,
+#fileDown:hover,
+#fileDown[active=true],
+#down-list li:hover,
+nav span:hover {
+    background-color: rgb(255, 102, 0);
+    color: white;
+    box-shadow: 1px 1px 2px rgb(151, 151, 151);
+}
+
+#waveform:hover,
+#mono:hover,
+#stereo:hover,
+#rtaOn:hover,
+#rtaOff:hover,
+#shufOn:hover,
+#shufOff:hover,
+.plyLst:hover,
+#refreshDur:hover,
+#fileLabel:hover,
+#fileDown:hover,
+#down-list li,
+#down-list label,
+nav span:hover,
+#close-fond:hover {
+    cursor: pointer;
+}
+
+#fileDown::after {
+    content: '\25BC';
+}
+
+#fileDown {
+    margin-left: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left: 1px solid rgb(255, 102, 0);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#fileLabel {
+    margin-right: 0;
+    padding-right: 10px;
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#audioFile {
+    display: none;
+}
+
+#down-list {
+    padding: 5px;
+    margin: 10px;
+    width: 255px;
+}
+
+#down-list li {
+    padding: 5px 2px 5px 2px;
+}
+
+#volume {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    vertical-align: middle;
+    height: 24px;
+    width: 50%;
+}
+
+#volume::-webkit-slider-runnable-track {
+    background: gray;
+    height: 2px;
+}
+
+#volume::-moz-range-track {
+    background: gray;
+    height: 2px;
+}
+
+#volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+    background: rgb(255, 102, 0);
+    cursor: pointer;
+    transform: translateY(-9px);
+}
+
+#volume::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgb(255, 102, 0);
+    cursor: pointer;
+}
+
+#modal-fond {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 900;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+#close-fond::after {
+    content: '\2715';
+}
+
+#close-fond:hover {
+    color: grey;
+}
+
+#close-fond {
+    float: right;
+    margin-top: 20px;
+    margin-right: 3%;
+    color: white;
+    background-color: transparent;
+    font-size: 40px;
+    height: 40px;
+    width: 40px;
+    border-style: none;
+}
+
+#modal-header, #modal-panel {
+    z-index: 950;
+    width: 60vw;
+    background-color: white;
+    font-size: 1.5em;
+}
+
+#modal-header {
+    font-weight: bold;
+    margin: 10vh auto 0 auto;
+    border-radius: 25px 25px 0 0;
+    padding: 1em;
+    border-bottom: 1px solid  rgb(255, 102, 0);
+}
+
+#modal-panel {
+    margin: 0 auto auto auto;
+    border-radius: 0 0 25px 25px;
+    padding: 1em;
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+.dragover {
+    border: 3px solid red;
+}

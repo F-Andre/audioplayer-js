@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audioplayer JS</title>
+    <link rel="stylesheet" href="audioplayer.css">
+</head>
+
+<body>
+    <nav>
+        <h2>Audioplayer JS</h2>
+        <span id="about">?</span>
+    </nav>
+    <div id="playerDiv">
+        <div id="loadArea">
+            <input type="file" name="audioFile" id="audioFile" accept=".mp3, .flac, .ogg" multiple />
+            <div id="loadButton">
+                <label for="audioFile" id="fileLabel">Charger des fichiers</label><span id="fileDown"></span>
+            </div>
+        </div>
+        <div id="control"></div>
+        <canvas id="waveform"></canvas>
+        <div id="displayControls">
+            <div>
+                <span>Forme d'onde:</span>
+                <span>
+                    <span id="mono" active>Mono</span><span id="stereo">Stéréo</span>
+                </span>
+            </div>
+            <div>
+                <span>RTA:</span>
+                <span>
+                    <span id="rtaOn">On</span><span id="rtaOff" active>Off</span>
+                </span>
+            </div>
+            <div>
+                <span>Lecture aléatoire:</span>
+                <span>
+                    <span id="shufOn">On</span><span id="shufOff" active>Off</span>
+                </span>
+            </div>
+            <div>
+                <span>Volume:</span>
+                <input type="range" id="volume" min="0" max="100" value="100" />
+            </div>
+        </div>
+        <audio id="audioPlayer"></audio>
+        <p>Playlist:</p>
+        <div id="progress"></div>
+        <table>
+            <tr>
+                <th></th>
+                <th>Nom</th>
+                <th>Durée</th>
+                <th>Type</th>
+            </tr>
+        </table>
+    </div>
+
+    <script src="audioplayer.js"></script>
+</body>
+
+</html>
